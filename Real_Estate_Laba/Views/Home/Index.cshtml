@@ -1,0 +1,153 @@
+﻿@model List<Property>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>User properties</p>
+    <button id="fetchDataButton" class="btn btn-primary">Get all properties</button>
+    <div id="loadingMessage" style="display: none;">Loading...</div>
+    <div id="errorMessage" style="color: red;"></div>
+    <label>Enter the city name (only USA or Canada!)</label>
+    <div style="display:flex;justify-content:center;align-items:center;">
+        <input id="cityInput" style="width:30%" class="form-control mt-3" placeholder="City" />
+    </div>
+</div>
+<style>
+    .property-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .property-tile {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px;
+        width: 300px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        background-color: #fff;
+        text-align: center;
+    }
+
+        .property-tile h2 {
+            font-weight: bold;
+            margin: 0;
+        }
+
+    .property-description {
+        margin-top: 8px;
+    }
+
+    .property-price {
+        margin-top: 8px;
+        font-weight: bold;
+        color: #007bff;
+    }
+</style>
+<div class="property-container">
+    @foreach (var item in Model)
+    {
+        <div class="property-tile">
+            <img style="max-width:100%;max-height:100%" src="@item.Image.ImageData" alt="Property Image" />
+            <h2>Status-@item.Status</h2>
+            <div class="property-description">Type-@item.Type</div>
+            <div class="property-price">Price-$@item.Price.ToString("#,##0")</div>
+            <div class="property-city">City-@item.Location.City</div>
+            <a class="btn btn-primary" asp-controller="Property" asp-action="Details" asp-route-id="@item.Id">View details</a>
+        </div>
+    }
+</div>
+
+<div id="propertyInfo" class="property-container">
+</div>
+
+<script>
+    async function fetchPropertyData() {
+        try {
+            const loadingMessage = document.getElementById('loadingMessage');
+            loadingMessage.style.display = 'block';
+
+            const cityInput = document.getElementById('cityInput');
+            const city = cityInput.value;
+
+            if (!city) {
+                const errorMessage = document.getElementById('errorMessage');
+                errorMessage.textContent = 'Please enter a city.';
+                errorMessage.style.color = 'red';
+                loadingMessage.style.display = 'none';
+                return;
+            }
+
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.textContent = '';
+
+            const url = `/Property/GetProperty?city=${encodeURIComponent(city)}`;
+
+            const response = await fetch(url);
+            const data = await response.json();
+
+            const results = data.results;
+
+            const propertyInfoContainer = document.getElementById('propertyInfo');
+            propertyInfoContainer.innerHTML = '';
+
+            results.forEach(propertyInfo => {
+                const propertyTile = document.createElement('div');
+                propertyTile.classList.add('property-tile');
+
+                const propertyImage = document.createElement('img');
+                propertyImage.src = propertyInfo.imgSrc;
+
+                propertyImage.style.maxWidth = '100%';
+                propertyImage.style.maxHeight = '100%';
+
+                const propertyCity = document.createElement('div');
+                propertyCity.classList.add('property-city');
+                propertyCity.textContent = `City-${propertyInfo.city}`;
+
+                const propertyName = document.createElement('h2');
+                propertyName.textContent = `Status-${propertyInfo.homeStatus}`;
+
+                const propertyDescription = document.createElement('div');
+                propertyDescription.classList.add('property-description');
+                propertyDescription.textContent = `Type-${propertyInfo.homeType}`;
+
+                const propertyPrice = document.createElement('div');
+                propertyPrice.classList.add('property-price');
+                propertyPrice.textContent = `Price-$${propertyInfo.price.toLocaleString()}`;
+
+                const propertyButton = document.createElement('button');
+                propertyButton.textContent = 'View Details';
+                propertyButton.classList.add('btn', 'btn-primary');
+
+                propertyButton.addEventListener('click', () => {
+                    console.log('Button clicked for property:', propertyInfo);
+                });
+
+                propertyTile.appendChild(propertyImage);
+                propertyTile.appendChild(propertyName);
+                propertyTile.appendChild(propertyDescription);
+                propertyTile.appendChild(propertyPrice);
+                propertyTile.appendChild(propertyCity);
+
+                propertyTile.appendChild(propertyButton);
+
+                propertyInfoContainer.appendChild(propertyTile);
+            });
+
+            loadingMessage.style.display = 'none';
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    const fetchDataButton = document.getElementById('fetchDataButton');
+    fetchDataButton.addEventListener('click', fetchPropertyData);
+</script>
+
+
+
+
+

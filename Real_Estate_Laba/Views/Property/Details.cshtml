@@ -1,0 +1,85 @@
+﻿@using System.Security.Claims;
+@model Real_Estate_Laba.ViewModels.PropertyVM
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Property</h4>
+    <hr />
+    <img style="max-width:30%;max-height:30%" src="@Model.Property.Image.ImageData" alt="Property Image" />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Property.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Property.Status)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Property.Type)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Property.Type)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Property.BedroomCount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Property.BedroomCount)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Property.BathroomCount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Property.BathroomCount)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Property.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Property.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Property.Area)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Property.Area)
+        </dd>
+        <h4>Location</h4>
+        <hr />
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Location.Country)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Location.Country)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Location.City)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Location.City)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Location.State)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Location.State)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Location.Street)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Location.Street)
+        </dd>
+    </dl>
+</div>
+<div>
+    @if (Model.Property.AgentId == User.FindFirstValue(ClaimTypes.NameIdentifier))
+    {
+        <a asp-action="Edit" asp-route-id="@Model?.Property.Id">Edit | </a>
+    }
+    <a asp-action="Index">Back to List</a>
+</div>
