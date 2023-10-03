@@ -286,3 +286,4 @@ C:\VisualStudio(Projects)\Real_Estate_Laba\Real_Estate_Laba\obj\Debug\net7.0\Rea
 C:\VisualStudio(Projects)\Real_Estate_Laba\Real_Estate_Laba\bin\Debug\net7.0\Azure.Storage.Blobs.dll
 C:\VisualStudio(Projects)\Real_Estate_Laba\Real_Estate_Laba\bin\Debug\net7.0\Azure.Storage.Common.dll
 C:\VisualStudio(Projects)\Real_Estate_Laba\Real_Estate_Laba\bin\Debug\net7.0\System.IO.Hashing.dll
+C:\VisualStudio(Projects)\Real_Estate_Laba\Real_Estate_Laba\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.Google.dll

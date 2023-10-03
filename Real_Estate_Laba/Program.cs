@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,7 +19,14 @@ builder.Services.AddIdentity<Agent, IdentityRole>(options =>
     options.Password.RequiredLength = 5;
 
 }).AddEntityFrameworkStores<UserDbContext>().AddDefaultTokenProviders().AddDefaultUI();
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+builder.Services.AddAuthentication()
+.AddCookie()
+.AddGoogle(googleOptions =>
+{
+    googleOptions.ClientId = builder.Configuration["Google:ClientId"];
+    googleOptions.ClientSecret = builder.Configuration["Google:ClientSecret"];
+});
+
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
@@ -42,7 +50,10 @@ app.MapRazorPages();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllerRoute(
     name: "default",

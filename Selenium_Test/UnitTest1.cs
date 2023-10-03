@@ -32,6 +32,7 @@ public class LoginTests
         Assert.AreEqual("https://localhost:44338/", _driver.Url);
     }
 
+
     [TestCleanup]
     public void TearDown()
     {

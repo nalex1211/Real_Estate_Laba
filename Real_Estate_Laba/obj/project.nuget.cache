@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0s4t+F0VRWTzFY91CGQ0HLmZ5Z5rHHaNCgE+/J4T+bhhCRPGh+M54qYpnJZT3qR/PcPqd4ATTb6dMe4FPN2xNw==",
+  "dgSpecHash": "iyA72JGT5mydmcAVWlqFQBSAkIhLAVrHnbE56VFeTjUxiFULD+H6tAhmdiYBb3fn+Hz4PT99lD6rb8JVPIDlMQ==",
   "success": true,
   "projectFilePath": "C:\\VisualStudio(Projects)\\Real_Estate_Laba\\Real_Estate_Laba\\Real_Estate_Laba.csproj",
   "expectedPackageFiles": [
@@ -12,6 +12,7 @@
     "C:\\Users\\nalex\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\nalex\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\nalex\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",
+    "C:\\Users\\nalex\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\7.0.11\\microsoft.aspnetcore.authentication.google.7.0.11.nupkg.sha512",
     "C:\\Users\\nalex\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.10\\microsoft.aspnetcore.cryptography.internal.7.0.10.nupkg.sha512",
     "C:\\Users\\nalex\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.10\\microsoft.aspnetcore.cryptography.keyderivation.7.0.10.nupkg.sha512",
     "C:\\Users\\nalex\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\7.0.10\\microsoft.aspnetcore.identity.entityframeworkcore.7.0.10.nupkg.sha512",
